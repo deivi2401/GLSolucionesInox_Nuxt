@@ -13,7 +13,9 @@
           <li><a class="hover:text-white transition-colors" href="#">Corte Láser</a></li>
           <li><a class="hover:text-white transition-colors" href="#">Acabados de Superficie</a></li>
           <li><a class="hover:text-white transition-colors" href="#">Fabricación Personalizada</a></li>
+          <li><NuxtLink class="hover:text-white transition-colors" to="/materiales">Especificaciones Técnicas</NuxtLink></li>
           <li><a class="hover:text-white transition-colors" href="#">Soporte Técnico</a></li>
+
         </ul>
       </div>
       <div class="space-y-6">
