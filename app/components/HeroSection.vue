@@ -13,12 +13,12 @@
           SOLUCIONES EN<br/>ACERO INOXIDABLE
         </h1>
         <p class="font-body text-xl text-primary-fixed-dim max-w-xl mb-12 leading-relaxed">
-          Diseños de precisión en acero inoxidable para todo tipo de proyectos. En Grupo López Soluciones Inox fusionamos la exactitud milimétrica con calidad artesanal para redefinir el paisaje estructural.
+          Fabricación en acero inoxidable para todo tipo de necesidades. En Grupo López Soluciones Inox combinamos nuestra capacidad técnica con un alto compromiso de atención al cliente y calidad para tus proyectos.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button class="bg-white text-primary font-label uppercase tracking-widest text-sm px-10 py-5 font-bold hover:bg-surface-container-low transition-all">
+          <NuxtLink to="/contacto" class="bg-white text-primary font-label uppercase tracking-widest text-sm px-10 py-5 font-bold hover:bg-surface-container-low transition-all inline-block flex-none text-center">
             Solicitar Cotización
-          </button>
+          </NuxtLink>
           <button class="border border-white/30 text-white font-label uppercase tracking-widest text-sm px-10 py-5 hover:bg-white/10 transition-all">
             Ver Portafolio
           </button>
@@ -27,8 +27,8 @@
     </div>
     <div class="absolute bottom-12 right-12 z-20 hidden lg:block">
       <div class="flex flex-col items-end border-r-4 border-tertiary pr-6 py-2">
-        <span class="font-headline text-4xl text-white font-light tracking-tighter">0.001mm</span>
-        <span class="font-label text-xs uppercase tracking-widest text-primary-fixed-dim">Tolerancia Máxima</span>
+        <span class="font-headline text-4xl text-white font-light tracking-tighter">100%</span>
+        <span class="font-label text-xs uppercase tracking-widest text-primary-fixed-dim">Compromiso de Calidad</span>
       </div>
     </div>
   </header>

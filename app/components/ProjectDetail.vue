@@ -181,7 +181,7 @@
             Inicie Su<br/>Proyecto Personalizado
           </h2>
           <p class="font-body text-white/60 leading-relaxed">
-            Nuestros ingenieros están listos para dar vida a sus visiones más complejas con precisión matemática.
+            Nuestros expertos están listos para dar vida a tus ideas en acero inoxidable con dedicación excepcional.
           </p>
         </div>
 

@@ -1,0 +1,161 @@
+<template>
+  <main class="min-h-screen pt-20">
+    <!-- Hero Section / Title -->
+    <section class="px-8 pt-12 pb-16 max-w-7xl mx-auto">
+      <div class="border-l-4 border-primary pl-8">
+        <p class="font-label uppercase tracking-[0.2em] text-sm text-primary mb-4 font-bold">Consulta Técnica</p>
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tighter text-primary leading-none font-headline">
+          CONECTA CON LA <br/> PRECISIÓN.
+        </h1>
+      </div>
+    </section>
+
+    <!-- Main Content Bento Grid -->
+    <section class="px-8 pb-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Inquiry Form (Get a Quote) -->
+      <div class="lg:col-span-7 bg-surface-container-lowest p-12 shadow-[0px_24px_48px_rgba(15,62,117,0.06)] relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+          <svg class="fill-primary" viewBox="0 0 100 100">
+            <rect height="2" width="100" x="0" y="0"></rect>
+            <rect height="2" width="100" x="0" y="20"></rect>
+            <rect height="2" width="100" x="0" y="40"></rect>
+            <rect height="2" width="100" x="0" y="60"></rect>
+            <rect height="2" width="100" x="0" y="80"></rect>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold tracking-tight text-primary mb-12 font-headline">COTIZA TU PROYECTO</h2>
+        
+        <form class="space-y-10" @submit.prevent="submitForm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="relative group">
+              <input class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="name" name="name" placeholder=" " type="text" required />
+              <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="name">Nombre Completo</label>
+            </div>
+            <div class="relative group">
+              <input class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="email" name="email" placeholder=" " type="email" required />
+              <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="email">Correo Electrónico</label>
+            </div>
+          </div>
+          <div class="relative group">
+            <select class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface appearance-none" id="service" name="service" required>
+              <option disabled selected value=""></option>
+              <option value="fabrication">Fabricación en Acero Inoxidable</option>
+              <option value="laser">Corte Láser y Guillotina</option>
+              <option value="assembly">Ensamblaje y Soldadura TIG</option>
+              <option value="custom">Prototipo Personalizado</option>
+            </select>
+            <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="service">Tipo de Servicio</label>
+          </div>
+          <div class="relative group">
+            <textarea class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="message" name="message" placeholder=" " rows="4" required></textarea>
+            <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="message">Detalles y Especificaciones del Proyecto</label>
+          </div>
+          <button class="w-full bg-primary text-on-primary py-6 font-headline font-bold tracking-[0.2em] text-lg hover:bg-primary-container transition-all flex justify-center items-center gap-4" type="submit">
+            SOLICITAR COTIZACIÓN
+            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Sidebar -->
+      <div class="lg:col-span-5 space-y-12">
+        <!-- Visit Our Facility Card -->
+        <div class="bg-surface-container p-8 border-l-8 border-primary relative overflow-hidden">
+          <h3 class="text-2xl font-bold tracking-tight text-primary mb-6 font-headline">NUESTRAS INSTALACIONES</h3>
+          <div class="mb-8 space-y-4">
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-primary mt-1" data-icon="location_on">location_on</span>
+              <div>
+                <p class="font-bold text-on-surface font-body">Zona Industrial</p>
+                <p class="text-secondary font-body">Sector de Metalurgia Avanzada</p>
+                <p class="text-secondary font-body">Grupo López Soluciones Inox</p>
+              </div>
+            </div>
+          </div>
+          <!-- Map Placeholder -->
+          <div class="w-full aspect-video bg-surface-container-highest relative group overflow-hidden">
+            <img alt="Map location" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Minimalist grayscale map view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiy7CpkPwxdFhbX0z8ImcOrsqkjl8pg70JckfDYhVEIaiYNsM7mLn6XNBKPU28mryKDuLX90-ANMl6w_GcbqpuapSa4GPogdVw6RZujL2n8_1fwXhEwXsavn2xNYG6G6CsIx8V3VauVj7OJFxywlenAD5BUUIU3qjrDNg93AI5ElTQkhopqNomtn-xqbvWsCgzXZv0JaeytUchJcsE-9xYrhqPw-hNjczWydaRdmRD7dpP-bJnLMk0wdqDi1BDrg8Li1-AMetPmNc"/>
+            <div class="absolute inset-0 flex items-center justify-center bg-primary/10 group-hover:bg-transparent transition-colors">
+              <div class="bg-white px-4 py-2 border border-primary/20 text-xs font-label uppercase tracking-widest text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm" data-icon="explore">explore</span>
+                Ver Ubicación
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct Contact Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+          <div class="bg-primary p-8 text-on-primary">
+            <p class="font-label uppercase tracking-[0.2em] text-[10px] text-on-primary/60 mb-4">Correo Directo</p>
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined" data-icon="mail">mail</span>
+              <a class="text-xl font-bold tracking-tight font-headline hover:text-on-primary-container transition-colors" href="mailto:ventas@grupolopezinox.com">ventas@grupolopezinox.com</a>
+            </div>
+          </div>
+          <div class="bg-surface-container-highest p-8 border border-outline-variant/30">
+            <p class="font-label uppercase tracking-[0.2em] text-[10px] text-outline mb-4">Línea Directa</p>
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+              <a class="text-xl font-bold tracking-tight font-headline text-primary hover:text-primary-container transition-colors" href="tel:+521234567890">+52 (123) 456-7890</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operating Hours -->
+        <div class="p-8 border border-outline-variant/30">
+          <h4 class="font-label uppercase tracking-widest text-xs text-outline mb-6 font-bold">Horario de Operaciones</h4>
+          <div class="space-y-3 font-body text-sm">
+            <div class="flex justify-between border-b border-outline-variant/10 pb-2">
+              <span class="text-secondary">Lunes — Viernes</span>
+              <span class="font-bold">08:00 — 18:00</span>
+            </div>
+            <div class="flex justify-between border-b border-outline-variant/10 pb-2">
+              <span class="text-secondary">Sábado</span>
+              <span class="font-bold">08:00 — 14:00</span>
+            </div>
+            <div class="flex justify-between text-outline">
+              <span>Domingo</span>
+              <span class="uppercase italic text-xs">Cerrado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specs Ticker/Banner -->
+    <section class="bg-primary py-10 overflow-hidden">
+      <div class="flex whitespace-nowrap gap-12 text-on-primary/20 font-headline font-black text-6xl italic select-none">
+        <span>ESPECIALISTAS EN ACERO INOXIDABLE</span>
+        <span>•</span>
+        <span>ALTA CAPACIDAD DE FABRICACIÓN</span>
+        <span>•</span>
+        <span>COMPROMISO CON LA CALIDAD</span>
+        <span>•</span>
+        <span>SOLUCIONES A MEDIDA</span>
+        <span>•</span>
+        <span>ESPECIALISTAS EN ACERO INOXIDABLE</span>
+      </div>
+    </section>
+  </main>
+</template>
+
+<script setup>
+import { useHead } from '#imports'
+
+useHead({
+  title: 'Contacto - Grupo López Soluciones Inox',
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap'
+    }
+  ]
+})
+
+const submitForm = () => {
+  // Manejo envíos del formulario simuladamente
+  alert('Formulario de cotización simulado. ¡Gracias por contactarnos!')
+}
+</script>

@@ -4,18 +4,18 @@
       <div class="space-y-6">
         <div class="font-headline font-bold text-xl text-white">Grupo López Inox</div>
         <p class="font-body text-sm text-blue-200/70 antialiased">
-          Líderes en fabricación técnica de acero inoxidable. Diseñando el futuro con precisión absoluta.
+          Especialistas en la fabricación de acero inoxidable. Comprometidos con la calidad de nuestros servicios y atención.
         </p>
       </div>
       <div class="space-y-6">
         <h5 class="font-label text-[10px] uppercase tracking-widest font-bold text-tertiary-fixed-dim">Servicios</h5>
         <ul class="space-y-4 font-body text-sm text-blue-200/70">
-          <li><a class="hover:text-white transition-colors" href="#">Corte Láser</a></li>
+          <li><a class="hover:text-white transition-colors" href="#">Corte con Guillotina</a></li>
           <li><a class="hover:text-white transition-colors" href="#">Acabados de Superficie</a></li>
           <li><a class="hover:text-white transition-colors" href="#">Fabricación Personalizada</a></li>
           <li><NuxtLink class="hover:text-white transition-colors" to="/materiales">Especificaciones Técnicas</NuxtLink></li>
-          <li><a class="hover:text-white transition-colors" href="#">Soporte Técnico</a></li>
-
+          <li><NuxtLink class="hover:text-white transition-colors" to="/nosotros">Acerca de Nosotros</NuxtLink></li>
+          <li><NuxtLink class="hover:text-white transition-colors" to="/contacto">Soporte y Contacto</NuxtLink></li>
         </ul>
       </div>
       <div class="space-y-6">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="px-12 py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-      <span class="font-body text-xs text-blue-200/50">© 2024 Grupo López Soluciones Inox. Excelencia en Ingeniería.</span>
+      <span class="font-body text-xs text-blue-200/50">© 2026 Grupo López Soluciones Inox. </span>
       <div class="flex gap-6">
         <a href="https://www.facebook.com/profile.php?id=61587383860192" target="_blank" rel="noopener noreferrer" class="text-blue-200/50 hover:text-white cursor-pointer transition-colors" title="Facebook">
           <Icon name="mdi:facebook" class="text-2xl" />

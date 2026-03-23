@@ -8,7 +8,7 @@
 
     <div class="relative max-w-7xl mx-auto px-8">
       <span ref="heroLabel" class="font-label text-secondary-fixed-dim uppercase tracking-[0.3em] text-xs font-bold mb-6 block opacity-0">
-        Precisión en Práctica
+        Trabajo a la Medida
       </span>
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
         <h1 ref="heroTitle" class="font-headline text-5xl md:text-7xl font-bold text-white leading-none max-w-2xl opacity-0">
@@ -16,7 +16,7 @@
           <span class="text-secondary-fixed-dim">PROYECTOS</span>
         </h1>
         <p ref="heroDesc" class="font-body text-white/60 max-w-sm text-base leading-relaxed opacity-0">
-          Desde obras arquitectónicas monumentales hasta componentes industriales de tolerancia crítica, fabricamos el futuro con exactitud incomparable.
+          Desde obras de acero inoxidable comerciales hasta requerimientos industriales, fabricamos el producto exacto a tus medidas.
         </p>
       </div>
 
@@ -122,7 +122,7 @@
           Siguiente Paso
         </span>
         <h2 class="font-headline text-4xl md:text-5xl font-bold text-white leading-tight mb-8">
-          Discuta Su Próximo<br/>Proyecto de Precisión
+          Discuta Su Próximo<br/>Proyecto a la Medida
         </h2>
         <p class="font-body text-white/60 mb-10 max-w-md leading-relaxed">
           ¿Listo para llevar sus requerimientos de ingeniería a la realidad? Nuestro equipo está disponible para brindar consultoría técnica y estimados detallados.
@@ -141,12 +141,17 @@
         </div>
       </div>
 
-      <!-- Certification badges -->
+      <!-- Quality guarantees -->
       <div class="grid grid-cols-2 gap-px bg-white/10">
-        <div v-for="cert in certifications" :key="cert.label" class="bg-primary/80 p-8 flex flex-col gap-3">
-          <span class="text-secondary-fixed-dim text-3xl leading-none">{{ cert.emoji }}</span>
-          <span class="font-headline text-base font-bold text-white">{{ cert.label }}</span>
-          <span class="font-body text-xs text-white/50 leading-relaxed">{{ cert.description }}</span>
+        <div class="bg-primary/80 p-8 flex flex-col gap-3">
+          <span class="text-secondary-fixed-dim text-3xl leading-none">✅</span>
+          <span class="font-headline text-base font-bold text-white">Estándares de Calidad</span>
+          <span class="font-body text-xs text-white/50 leading-relaxed">Revisados cuidadosamente en cada etapa.</span>
+        </div>
+        <div class="bg-primary/80 p-8 flex flex-col gap-3">
+          <span class="text-secondary-fixed-dim text-3xl leading-none">🤝</span>
+          <span class="font-headline text-base font-bold text-white">Atención Personalizada</span>
+          <span class="font-body text-xs text-white/50 leading-relaxed">Trabajamos de la mano con el cliente.</span>
         </div>
       </div>
     </div>
@@ -172,12 +177,12 @@ const ctaRef = ref(null)
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const stats = [
   { value: '+120', label: 'Proyectos Completados' },
-  { value: '99.9%', label: 'Precisión de Ensamblaje' },
+  { value: '100%', label: 'Soporte al Cliente' },
   { value: '28 años', label: 'Experiencia Industrial' },
-  { value: 'ISO 9001', label: 'Certificación Activa' },
+  { value: '100%', label: 'Calidad Interna' },
 ]
 
-const categories = ['Todos', 'Industrial', 'Arquitectónico', 'Marino', 'Aeroespacial']
+const categories = ['Todos', 'Residenciales', 'Restauranteras', 'Industriales']
 
 // --- SANITY DATA FETCHING ---
 const query = `{

@@ -13,10 +13,10 @@
             TECHNICAL DATA SHEET
           </span>
           <h1 ref="heroTitle" class="font-headline text-5xl md:text-7xl font-bold mb-8 leading-none tracking-tight opacity-0">
-            Materials &<br/>Specifications
+            Materiales &<br/>Especificaciones
           </h1>
           <p ref="heroDesc" class="font-body text-blue-100/70 max-w-xl text-lg leading-relaxed opacity-0">
-            Precision-engineered architectural and industrial components. Our material selection adheres to strict ASTM standards, ensuring structural integrity for every fabrication.
+            Fabricamos en acero inoxidable para requerimientos comerciales e industriales. Cuidamos cada detalle para asegurar la durabilidad de tus proyectos.
           </p>
         </div>
       </div>
@@ -26,35 +26,34 @@
     <section class="max-w-7xl mx-auto px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
-        <!-- Left Column: Stainless Steel Sheets Table -->
+        <!-- Left Column: General Materials Table -->
         <div ref="sheetsCol" class="lg:col-span-12 xl:col-span-8 opacity-0">
           <div class="flex justify-between items-end mb-8 border-b-2 border-primary pb-4">
-            <h2 class="font-headline text-2xl font-bold text-primary uppercase tracking-tight">Stainless Steel Sheets</h2>
-            <span class="font-label text-[10px] text-slate-400 font-bold">ASTM A240 STANDARD</span>
+            <h2 class="font-headline text-2xl font-bold text-primary uppercase tracking-tight">Láminas y Misceláneos</h2>
+            <span class="font-label text-[10px] text-slate-400 font-bold">INVENTARIO GENERAL</span>
           </div>
 
           <div class="overflow-x-auto bg-white shadow-sm border border-slate-200">
             <table class="w-full border-collapse">
               <thead>
                 <tr class="bg-slate-50 border-b border-slate-200">
-                  <th v-for="header in ['TYPE', 'GAUGE', 'THICKNESS (MM)', 'FINISH']" :key="header"
-                    class="p-4 text-left font-label text-[10px] uppercase tracking-widest text-slate-500 font-bold border-r last:border-0 border-slate-200">
+                  <th v-for="header in ['PRODUCTO', 'CALIBRE', 'TIPO']" :key="header"
+                    class="p-4 text-left font-label text-[10px] uppercase tracking-widest text-slate-500 font-bold border-r last:border-0 border-slate-200 lg:w-1/3">
                     {{ header }}
                   </th>
                 </tr>
               </thead>
               <tbody class="font-body text-sm text-primary">
-                <tr v-for="(row, i) in sheetData" :key="i" class="border-b last:border-0 border-slate-200 hover:bg-slate-50/50 transition-colors">
-                  <td class="p-4 font-bold border-r border-slate-200">{{ row.type }}</td>
+                <tr v-for="(row, i) in tableData" :key="i" class="border-b last:border-0 border-slate-200 hover:bg-slate-50/50 transition-colors">
+                  <td class="p-4 font-bold border-r border-slate-200">{{ row.product }}</td>
                   <td class="p-4 border-r border-slate-200">{{ row.gauge }}</td>
-                  <td class="p-4 border-r border-slate-200">{{ row.thickness }}</td>
-                  <td class="p-4">{{ row.finish }}</td>
+                  <td class="p-4">{{ row.type !== '-' ? 'Tipo ' + row.type : '-' }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="mt-4 font-body text-[10px] text-slate-400 italic">
-            * Custom shearing and laser cutting available for non-standard dimensions.
+            * Cortes a medida con guillotina disponibles para dimensiones especiales de lámina.
           </p>
         </div>
 
@@ -63,14 +62,14 @@
           
           <!-- PTR Tubing Section -->
           <div ref="tubingCol" class="opacity-0">
-            <h2 class="font-headline text-2xl font-bold text-primary uppercase tracking-tight mb-8 border-b-2 border-primary pb-4">PTR Tubing</h2>
+            <h2 class="font-headline text-2xl font-bold text-primary uppercase tracking-tight mb-8 border-b-2 border-primary pb-4">Tubería y PTR</h2>
             <div class="grid grid-cols-2 gap-4">
-              <div v-for="tube in tubingData" :key="tube.size" class="bg-white border border-slate-200 p-6 shadow-sm hover:border-secondary transition-colors group">
-                <span class="font-label text-[9px] text-slate-400 font-bold uppercase block mb-1">GAUGE 16</span>
-                <span class="font-headline text-lg font-bold text-primary block mb-3">{{ tube.size }}</span>
+              <div v-for="tube in tubingData" :key="tube.size + tube.type" class="bg-white border border-slate-200 p-4 shadow-sm hover:border-secondary transition-colors group">
+                <span class="font-label text-[9px] text-slate-400 font-bold uppercase block mb-1">CALIBRE {{ tube.gauge }}</span>
+                <span class="font-headline text-base font-bold text-primary block mb-2">{{ tube.size }}</span>
                 <div class="flex items-center gap-2">
                   <span class="w-1.5 h-1.5 bg-slate-300 rounded-full group-hover:bg-secondary transition-colors"></span>
-                  <span class="font-label text-[9px] uppercase tracking-widest text-slate-500 font-bold">{{ tube.type }}</span>
+                  <span class="font-label text-[9px] uppercase tracking-widest text-slate-500 font-bold">Tipo {{ tube.type }}</span>
                 </div>
               </div>
             </div>
@@ -80,7 +79,7 @@
           <div ref="certCol" class="bg-primary text-white p-8 shadow-xl opacity-0 transform translate-y-8">
             <h3 class="font-headline text-lg font-bold mb-8 flex items-center gap-3 border-b border-white/10 pb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Certifications
+              Garantía de Calidad
             </h3>
             <div class="space-y-10">
               <div v-for="cert in certs" :key="cert.title" class="group">
@@ -108,15 +107,15 @@
         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-slate-50 rounded-full border border-slate-100 pointer-events-none"></div>
         
         <div class="max-w-xl text-center md:text-left relative z-10">
-          <h2 class="font-headline text-3xl md:text-5xl font-bold text-primary mb-6 leading-tight">Ready to start your project?</h2>
+          <h2 class="font-headline text-3xl md:text-5xl font-bold text-primary mb-6 leading-tight">Listo para iniciar tu proyecto?</h2>
           <p class="font-body text-on-surface-variant text-lg leading-relaxed">
-            Upload your blueprints and material requirements for a detailed engineering quote within 24 hours.
+            Contactanos para mas informacion y poder proporcionarte una cotización exacta.
           </p>
         </div>
 
         <div class="relative z-10">
           <button class="bg-primary text-white font-label uppercase tracking-widest text-xs px-12 py-6 flex items-center gap-4 hover:bg-secondary transition-all hover:scale-105 active:scale-95 shadow-xl">
-            Request Quote
+            Pide tu cotización
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
           </button>
         </div>
@@ -131,18 +130,43 @@ import { ref, onMounted, markRaw } from 'vue'
 import gsap from 'gsap'
 
 // --- Data based on Stitch Screenshot ---
-const sheetData = [
-  { type: 'Type 304', gauge: '14 GA', thickness: '1.98 mm', finish: '2B / #4 Polish' },
-  { type: 'Type 304', gauge: '16 GA', thickness: '1.57 mm', finish: '2B / #4 Polish' },
-  { type: 'Type 430', gauge: '18 GA', thickness: '1.27 mm', finish: 'Bright Annealed' },
-  { type: 'Type 430', gauge: '20 GA', thickness: '0.91 mm', finish: 'Bright Annealed' }
+const tableData = [
+  { product: 'Ángulo 1/4 X 2 1/2', gauge: '-', type: '304' },
+  { product: 'Ángulo 1/8 X 3/4', gauge: '-', type: '304' },
+  { product: 'Barra Redonda 5/16', gauge: '-', type: '304' },
+  { product: 'Lámina', gauge: '14', type: '201' },
+  { product: 'Lámina', gauge: '14', type: '304' },
+  { product: 'Lámina', gauge: '14', type: '430' },
+  { product: 'Lámina', gauge: '16', type: '201' },
+  { product: 'Lámina', gauge: '16', type: '304' },
+  { product: 'Lámina', gauge: '16', type: '430' },
+  { product: 'Lámina', gauge: '18', type: '201' },
+  { product: 'Lámina', gauge: '18', type: '304' },
+  { product: 'Lámina', gauge: '18', type: '430' },
+  { product: 'Lámina', gauge: '20', type: '201' },
+  { product: 'Lámina', gauge: '20', type: '304' },
+  { product: 'Lámina', gauge: '20', type: '430' },
+  { product: 'Regatón Cuadrado', gauge: '-', type: '-' },
+  { product: 'Regatón Redondo', gauge: '-', type: '-' },
+  { product: 'Solera de 1/2 X 4', gauge: '-', type: '304' }
 ]
 
 const tubingData = [
-  { size: '1" x 2"', type: 'RECTANGULAR' },
-  { size: '2" x 2"', type: 'SQUARE' },
-  { size: '2" x 3"', type: 'RECTANGULAR' },
-  { size: '3" x 3"', type: 'SQUARE' }
+  { size: 'PTR 1/2 X 1/2', gauge: '18', type: '201' },
+  { size: 'PTR 1/2 X 1/2', gauge: '18', type: '304' },
+  { size: 'PTR 3/4 X 3/4', gauge: '18', type: '201' },
+  { size: 'PTR 3/4 X 3/4', gauge: '18', type: '304' },
+  { size: 'PTR 1 X 1', gauge: '18', type: '201' },
+  { size: 'PTR 1 X 1', gauge: '18', type: '304' },
+  { size: 'PTR 1 1/4 X 1 1/4', gauge: '18', type: '201' },
+  { size: 'PTR 1 1/4 X 1 1/4', gauge: '18', type: '304' },
+  { size: 'PTR 1 1/2 X 1 1/2', gauge: '18', type: '201' },
+  { size: 'PTR 1 1/2 X 1 1/2', gauge: '18', type: '304' },
+  { size: 'PTR 2 X 2', gauge: '18', type: '201' },
+  { size: 'PTR 2 X 2', gauge: '18', type: '304' },
+  { size: 'PTR 3 X 3', gauge: '11', type: '201' },
+  { size: 'PTR 3 X 3', gauge: '11', type: '304' },
+  { size: 'Tubo Redondo 1 1/2', gauge: '16', type: '201' }
 ]
 
 const SettingsIcon = markRaw({
@@ -155,14 +179,14 @@ const BarChartIcon = markRaw({
 
 const certs = [
   { 
-    title: 'ISO 9001 Certified', 
+    title: 'Estándares Internos', 
     icon: SettingsIcon, 
-    desc: 'Global quality management standards maintained throughout the fabrication lifecycle.' 
+    desc: 'Controles de calidad en cada etapa de la fabricación.' 
   },
   { 
-    title: 'Material Traceability', 
+    title: 'Servicio Personalizado', 
     icon: BarChartIcon, 
-    desc: 'Mill Test Reports (MTR) provided for all structural elements upon delivery.' 
+    desc: 'Acompañamiento técnico desde la asesoría hasta la entrega de tu proyecto.' 
   }
 ]
 
