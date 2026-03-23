@@ -49,7 +49,7 @@ const query = `*[_type == "project" && featured == true] | order(_createdAt desc
   _id,
   title,
   slug,
-  "imageUrl": heroImage.asset->url
+  "imageUrl": heroImage.asset->url + "?auto=format"
 }`
 const { data: queryResult, error } = await useSanityQuery(query)
 const featuredProjects = computed(() => queryResult.value?.data || queryResult.value || [])

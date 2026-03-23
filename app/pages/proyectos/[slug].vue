@@ -18,7 +18,16 @@ const query = `*[_type == "project" && slug.current == $slug][0] {
   specs, challenges
 }`
 const { data: queryResult, error } = await useSanityQuery(query, { slug: route.params.slug })
-const project = computed(() => queryResult.value?.data || queryResult.value || null)
+const project = computed(() => {
+  const data = queryResult.value?.data || queryResult.value || null
+  if (data) {
+    if (data.heroImage && !data.heroImage.includes('auto=format')) data.heroImage += "?auto=format"
+    if (data.galleryImages) {
+      data.galleryImages = data.galleryImages.map(img => img.includes('auto=format') ? img : img + "?auto=format")
+    }
+  }
+  return data
+})
 
 if (error.value) {
   console.error('--- SANITY ERROR (ProjectDetail) ---', error.value)

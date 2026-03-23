@@ -190,7 +190,7 @@ const query = `{
     _id, title, slug, category, 
     "description": overview, 
     tags, featured,
-    "image": heroImage.asset->url
+    "image": heroImage.asset->url + "?auto=format"
   },
   "certifications": *[_type == "certification"] {
     _id, label, description, emoji
