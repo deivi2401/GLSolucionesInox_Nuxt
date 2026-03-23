@@ -1,7 +1,7 @@
 <template>
   <header ref="sectionRef" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-primary">
     <div class="absolute inset-0 z-0 opacity-40">
-      <img class="w-full h-full object-cover" alt="Close up of structural architectural steel beams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE_G6967s-U7hVXpWPJDS0bFnnLLfyrcLlGSv4mekQtHLycqcJwVpQe7C_396Cf8gVY7DPRJg4yuStAs6AdBvLDnZVrXBvPAoUhdhaXuLfEPVY151QbT4xYAYW5-kbedr2vbQg1sUeRv29M6BM5Rxkz8b0aSk50NZc1edFkE0w5TdWok0StcodSnJlb9DkkZtuqu6cUffFqD1yO6QKEMX6hPmxIaU055U2rc5A7L6nPXDbEds_ncsiyTB883rwlLJbtmqieiMc51c"/>
+      <img class="w-full h-full object-cover" alt="Close up of structural architectural steel beams" src="/images/PortadaPaginaGLSoluciones.webp"/>
     </div>
     <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10"></div>
     <div class="relative z-20 max-w-7xl mx-auto px-8 w-full">
