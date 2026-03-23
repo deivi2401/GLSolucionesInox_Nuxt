@@ -4,23 +4,21 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/sanity',
+    '@nuxt/icon'
   ],
+  sanity: {
+    projectId: '5f3r5g0t',
+    dataset: 'production',
+    apiVersion: '2024-03-22',
+    useCdn: false
+  },
   css: ['~/assets/css/tailwind.css'],
   googleFonts: {
     families: {
       'Space+Grotesk': [300, 400, 500, 600, 700],
       'Manrope': [300, 400, 500, 600, 700]
-    }
-  },
-  app: {
-    head: {
-      link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0',
-        }
-      ]
     }
   }
 })

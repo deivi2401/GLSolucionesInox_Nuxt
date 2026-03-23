@@ -38,8 +38,12 @@
     <div class="px-12 py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
       <span class="font-body text-xs text-blue-200/50">© 2024 Grupo López Soluciones Inox. Excelencia en Ingeniería.</span>
       <div class="flex gap-6">
-        <a href="https://www.facebook.com/profile.php?id=61587383860192" target="_blank" rel="noopener noreferrer" class="material-symbols-outlined text-blue-200/50 hover:text-white cursor-pointer transition-colors" title="Facebook">thumb_up</a>
-        <a href="https://www.instagram.com/grupolopezinox/" target="_blank" rel="noopener noreferrer" class="material-symbols-outlined text-blue-200/50 hover:text-white cursor-pointer transition-colors" title="Instagram">photo_camera</a>
+        <a href="https://www.facebook.com/profile.php?id=61587383860192" target="_blank" rel="noopener noreferrer" class="text-blue-200/50 hover:text-white cursor-pointer transition-colors" title="Facebook">
+          <Icon name="mdi:facebook" class="text-2xl" />
+        </a>
+        <a href="https://www.instagram.com/grupolopezinox/" target="_blank" rel="noopener noreferrer" class="text-blue-200/50 hover:text-white cursor-pointer transition-colors" title="Instagram">
+          <Icon name="mdi:instagram" class="text-2xl" />
+        </a>
       </div>
     </div>
   </footer>

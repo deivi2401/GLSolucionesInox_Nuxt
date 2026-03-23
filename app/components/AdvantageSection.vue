@@ -16,7 +16,7 @@
           <div class="space-y-12">
             <div class="flex gap-6">
               <div class="flex-shrink-0 w-16 h-16 bg-surface-container-high flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary text-3xl" data-icon="verified">verified</span>
+                <Icon name="material-symbols:verified-outline" class="text-primary text-3xl" />
               </div>
               <div>
                 <h4 class="font-headline text-xl font-bold text-primary mb-2">Certificación ISO 9001:2015</h4>
@@ -25,7 +25,7 @@
             </div>
             <div class="flex gap-6">
               <div class="flex-shrink-0 w-16 h-16 bg-surface-container-high flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary text-3xl" data-icon="speed">speed</span>
+                <Icon name="material-symbols:speed-outline" class="text-primary text-3xl" />
               </div>
               <div>
                 <h4 class="font-headline text-xl font-bold text-primary mb-2">Producción de Alta Velocidad</h4>
@@ -34,7 +34,7 @@
             </div>
             <div class="flex gap-6">
               <div class="flex-shrink-0 w-16 h-16 bg-surface-container-high flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary text-3xl" data-icon="biotech">biotech</span>
+                <Icon name="material-symbols:biotech-outline" class="text-primary text-3xl" />
               </div>
               <div>
                 <h4 class="font-headline text-xl font-bold text-primary mb-2">Metalurgia Técnica</h4>

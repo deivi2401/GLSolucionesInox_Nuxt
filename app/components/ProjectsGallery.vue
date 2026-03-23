@@ -55,11 +55,11 @@
       <TransitionGroup name="gallery" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
           v-for="(project, i) in filteredProjects"
-          :key="project.id"
+          :key="project._id"
           ref="cardRefs"
           class="group relative overflow-hidden bg-primary cursor-pointer"
           :class="{ 'md:col-span-2 lg:col-span-2': project.featured }"
-          @mouseenter="hoverProject = project.id"
+          @mouseenter="hoverProject = project._id"
           @mouseleave="hoverProject = null"
         >
           <!-- Image -->
@@ -68,13 +68,13 @@
               :src="project.image"
               :alt="project.title"
               class="w-full h-full object-cover opacity-80 transition-all duration-700"
-              :class="hoverProject === project.id ? 'scale-110 opacity-90' : 'scale-100'"
+              :class="hoverProject === project._id ? 'scale-110 opacity-90' : 'scale-100'"
             />
           </div>
 
           <!-- Dark overlay gradient -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300"
-            :class="hoverProject === project.id ? 'opacity-100' : 'opacity-70'">
+            :class="hoverProject === project._id ? 'opacity-100' : 'opacity-70'">
           </div>
 
           <!-- Tag -->
@@ -86,7 +86,7 @@
 
           <!-- Card content -->
           <div class="absolute bottom-0 left-0 right-0 p-6 transform transition-transform duration-300"
-            :class="hoverProject === project.id ? 'translate-y-0' : 'translate-y-2'">
+            :class="hoverProject === project._id ? 'translate-y-0' : 'translate-y-2'">
             <div class="flex gap-3 mb-3 flex-wrap">
               <span v-for="tag in project.tags" :key="tag"
                 class="font-label text-[10px] uppercase tracking-wider text-white/50 border border-white/20 px-2 py-0.5">
@@ -95,14 +95,14 @@
             </div>
             <h3 class="font-headline text-xl md:text-2xl font-bold text-white mb-1">{{ project.title }}</h3>
             <p class="font-body text-sm text-white/60 mb-4 line-clamp-2 transition-all duration-300"
-              :class="hoverProject === project.id ? 'opacity-100' : 'opacity-0'">
+              :class="hoverProject === project._id ? 'opacity-100' : 'opacity-0'">
               {{ project.description }}
             </p>
-            <a href="#" class="inline-flex items-center gap-2 font-label text-xs uppercase tracking-widest text-white/90
+            <NuxtLink :to="`/proyectos/${project.slug.current}`" class="inline-flex items-center gap-2 font-label text-xs uppercase tracking-widest text-white/90
               border-b border-white/30 pb-0.5 transition-all hover:text-white hover:border-white group/link">
               Ver Caso de Estudio
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </TransitionGroup>
@@ -179,90 +179,35 @@ const stats = [
 
 const categories = ['Todos', 'Industrial', 'Arquitectónico', 'Marino', 'Aeroespacial']
 
-const projects = [
-  {
-    id: 1,
-    title: 'Terminal Marítima 4',
-    category: 'Marino',
-    description: 'Estructura de soporte completa en acero inoxidable grado 316 para terminal offshore. TIG Welding de precisión bajo condiciones de salinidad extrema.',
-    tags: ['TIG Welding', 'Marine Grade 316'],
-    featured: true,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAWdBEpT_2c972qejloNHiAAaCB6zapb28bEZDCErU-27kdxJOXWNeJ2rKFu3XLweVQfaEtzVEMPI6x3MYW5Zs78tmv_Q-myT4at42nT0a0IyAgaUgsBilZhAcuSzeCtS0CqzUd3N9BiYGsXyCd5YFB5rADhvHarmQcWkVHit3OiIDPocgW04IaHzr9XJp_PFH9-YqcNw5ncHM2OMnjBw4sDNULmQ4zZlZPdllIOpx6OJjPljWaoJ4zl7SYFApDKSo3Xdlw8VPisHg',
+// --- SANITY DATA FETCHING ---
+const query = `{
+  "projects": *[_type == "project"] | order(_createdAt desc) {
+    _id, title, slug, category, 
+    "description": overview, 
+    tags, featured,
+    "image": heroImage.asset->url
   },
-  {
-    id: 2,
-    title: 'The Helix Spire',
-    category: 'Arquitectónico',
-    description: 'Escultura arquitectónica en espiral de 24 metros con acabado mirror polish de alta complejidad geométrica.',
-    tags: ['Laser Cutting', 'Mirror Polish'],
-    featured: false,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD2JtDJroUnILqJQ8gTpzcWS9MEqFoeIaIXsOXOXMnJ8IdzWF75L9TqtH_6HDaXiHOzlDw-38sSEHeoAJpmZFpcDNy9F09cswr0Dk0mpnFx9oPjQj5YfLfQN2mOaRmPokuJtcrNovv1LASqB8wUfnpkzQ79cmAK498GIyVWUwjGgh3S6fNBJBchdPZo7V_gRSZ2WTxZG_GxFLReXRsn2qWTkISB0El7MwuDw3LobBFAHyoFb7rm4ykGn9yL_5vq-8UJTjgEhmrT2EY',
-  },
-  {
-    id: 3,
-    title: 'Tubería de Proceso Sanitario',
-    category: 'Industrial',
-    description: 'Sistema de tuberías de grado cleanroom con acabado electropulido y soldadura orbital robotizada para farmacéutica.',
-    tags: ['Orbital Welding', 'Cleanroom Grade'],
-    featured: false,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBaj8L5er6watbd_TXz9lxx6HZFLwlmlJf984LMjBXno-uOJGwTlUlhuoDAGRy88LpSlmX7OfFg7GYLmUQepap5YEkEQOGkaDQfeBkehuH34RP-ndsbXA0HA9g9aoBX-8iFeP2qJxkacWmWpchueRr_ZblecLwK4JCjnHsorgmx35dyEx6sAyaY8mM9Z2GpC4NEtDGjhJGKSDh74kU6iZ5rZ6UIC6-rZSaII7mkfYtrv3w283FClc6kpxK7cQ4v6mDhctOj34qn50I',
-  },
-  {
-    id: 4,
-    title: 'Celda de Clasificación Automatizada',
-    category: 'Industrial',
-    description: 'Ensamble estructural CNC para celda robótica de clasificación de alta precisión. Tolerancias de ±0.05mm en todos los puntos de montaje.',
-    tags: ['CNC Bending', 'Structural Assembly'],
-    featured: false,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA8Z-bwXJZVhAt-VEt2mW8-AqIBTyDXjfKEhR2pGpMCO66r7ipWraAfx7PUfYsU3fL_dqfmhM1K3CdDa2yqdm8bxuibN-9yQvHgje7qLNQsNgM3oJWpXZ7pTKG-6qP01HgBg_hO9I-tQk8H9uG5owPcvQgrsOGQLIMqCQP-knL9ykO0_sYZ5cSv2_-m3-vl1B3a6aKA4f7ZjXQnFFAInZhVt9GLBzCBfqzm7YU7wmw5D-r43NCt65Tys0KBdX86AKsbl-wTdil_fiM',
-  },
-  {
-    id: 5,
-    title: 'Plantilla de Herramientas Aeroespaciales',
-    category: 'Aeroespacial',
-    description: 'Fixture de mecanizado en 5 ejes para componentes de motores aeroespaciales. Aluminio grado aeroespacial con tolerancias críticas.',
-    tags: ['5-Axis CNC', 'Aerospace Grade Alum'],
-    featured: false,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAWdBEpT_2c972qejloNHiAAaCB6zapb28bEZDCErU-27kdxJOXWNeJ2rKFu3XLweVQfaEtzVEMPI6x3MYW5Zs78tmv_Q-myT4at42nT0a0IyAgaUgsBilZhAcuSzeCtS0CqzUd3N9BiYGsXyCd5YFB5rADhvHarmQcWkVHit3OiIDPocgW04IaHzr9XJp_PFH9-YqcNw5ncHM2OMnjBw4sDNULmQ4zZlZPdllIOpx6OJjPljWaoJ4zl7SYFApDKSo3Xdlw8VPisHg',
-  },
-  {
-    id: 6,
-    title: 'Escalera del Atrio Vertex',
-    category: 'Arquitectónico',
-    description: 'Escalera helicoidal de acero inoxidable con acabado manual artesanal para lobby corporativo de lujo. Placa estructural de 12mm de espesor.',
-    tags: ['Hand-Crafted Finish', 'Structural Plate'],
-    featured: false,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD2JtDJroUnILqJQ8gTpzcWS9MEqFoeIaIXsOXOXMnJ8IdzWF75L9TqtH_6HDaXiHOzlDw-38sSEHeoAJpmZFpcDNy9F09cswr0Dk0mpnFx9oPjQj5YfLfQN2mOaRmPokuJtcrNovv1LASqB8wUfnpkzQ79cmAK498GIyVWUwjGgh3S6fNBJBchdPZo7V_gRSZ2WTxZG_GxFLReXRsn2qWTkISB0El7MwuDw3LobBFAHyoFb7rm4ykGn9yL_5vq-8UJTjgEhmrT2EY',
-  },
-]
+  "certifications": *[_type == "certification"] {
+    _id, label, description, emoji
+  }
+}`
+const { data: queryResult, error } = await useSanityQuery(query)
+const actualData = computed(() => queryResult.value?.data || queryResult.value || {})
 
-const certifications = [
-  {
-    emoji: '✓',
-    label: 'ISO 9001:2015',
-    description: 'Sistema de gestión de calidad certificado internacionalmente.',
-  },
-  {
-    emoji: '⚡',
-    label: 'Producción 24/7',
-    description: 'Ciclos de corte automatizados para tiempos de entrega precisos.',
-  },
-  {
-    emoji: '⬡',
-    label: 'Metalurgia Técnica',
-    description: 'Grados 304, 316, 2205 según exposición ambiental.',
-  },
-  {
-    emoji: '◎',
-    label: 'CNC 5-Ejes',
-    description: 'Tolerancias de ±0.05mm en todos los ejes de mecanizado.',
-  },
-]
+if (error.value) {
+  console.error('--- SANITY ERROR (ProjectsGallery) ---', error.value)
+} else {
+  console.log('--- SANITY DATA (ProjectsGallery) ---', actualData.value)
+}
+
+const projects = computed(() => actualData.value.projects || [])
+const certifications = computed(() => actualData.value.certifications || [])
+// ----------------------------
 
 // ─── Computed ─────────────────────────────────────────────────────────────────
 const filteredProjects = computed(() => {
-  if (active.value === 'Todos') return projects
-  return projects.filter(p => p.category === active.value)
+  if (active.value === 'Todos') return projects.value
+  return projects.value.filter(p => p.category === active.value)
 })
 
 // ─── Animations ───────────────────────────────────────────────────────────────

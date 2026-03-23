@@ -14,7 +14,7 @@
         <!-- Laser Cutting -->
         <div class="group bg-surface-container-lowest p-12 border-l border-outline-variant/30 hover:bg-primary transition-all duration-500">
           <div class="mb-12">
-            <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors" data-icon="precision_manufacturing">precision_manufacturing</span>
+            <Icon name="material-symbols:precision-manufacturing-outline" class="text-4xl text-primary group-hover:text-white transition-colors" />
           </div>
           <h3 class="font-headline text-2xl font-bold mb-6 text-primary group-hover:text-white transition-colors">Corte Láser</h3>
           <p class="font-body text-on-surface-variant mb-8 group-hover:text-primary-fixed-dim transition-colors">
@@ -25,7 +25,7 @@
         <!-- TIG Welding -->
         <div class="group bg-surface-container-low p-12 border-l border-outline-variant/30 hover:bg-primary transition-all duration-500">
           <div class="mb-12">
-            <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors" data-icon="mode_fan">mode_fan</span>
+            <Icon name="material-symbols:mode-fan-outline" class="text-4xl text-primary group-hover:text-white transition-colors" />
           </div>
           <h3 class="font-headline text-2xl font-bold mb-6 text-primary group-hover:text-white transition-colors">Soldadura TIG</h3>
           <p class="font-body text-on-surface-variant mb-8 group-hover:text-primary-fixed-dim transition-colors">
@@ -36,7 +36,7 @@
         <!-- Custom Forming -->
         <div class="group bg-surface-container-lowest p-12 border-l border-r border-outline-variant/30 hover:bg-primary transition-all duration-500">
           <div class="mb-12">
-            <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors" data-icon="architecture">architecture</span>
+            <Icon name="material-symbols:architecture" class="text-4xl text-primary group-hover:text-white transition-colors" />
           </div>
           <h3 class="font-headline text-2xl font-bold mb-6 text-primary group-hover:text-white transition-colors">Doblado Especializado</h3>
           <p class="font-body text-on-surface-variant mb-8 group-hover:text-primary-fixed-dim transition-colors">

@@ -21,7 +21,7 @@
           </div>
           <div class="md:col-span-2">
             <div class="border-2 border-dashed border-outline-variant p-8 text-center bg-surface-container-low group hover:bg-surface-container-high transition-colors cursor-pointer">
-              <span class="material-symbols-outlined text-primary text-3xl mb-2" data-icon="cloud_upload">cloud_upload</span>
+              <Icon name="material-symbols:cloud-upload-outline" class="text-primary text-4xl mb-2 block mx-auto" />
               <p class="font-body text-sm text-on-surface-variant">Arrastra y suelta tus archivos CAD/PDF aquí</p>
             </div>
           </div>
