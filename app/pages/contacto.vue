@@ -71,21 +71,25 @@
             <div class="flex items-start gap-4">
               <span class="material-symbols-outlined text-primary mt-1" data-icon="location_on">location_on</span>
               <div>
-                <p class="font-bold text-on-surface font-body">Zona Industrial</p>
-                <p class="text-secondary font-body">Sector de Metalurgia Avanzada</p>
-                <p class="text-secondary font-body">Grupo López Soluciones Inox</p>
+                <p class="font-bold text-on-surface font-body">Grupo López Soluciones Inox</p>
+                <p class="text-secondary font-body leading-relaxed">
+                  Donato Guerra 2110<br />
+                  Col. Juárez, C.P. 88209<br />
+                  Nuevo Laredo, TAMPS, México
+                </p>
               </div>
             </div>
           </div>
-          <!-- Map Placeholder -->
-          <div class="w-full aspect-video bg-surface-container-highest relative group overflow-hidden">
-            <img alt="Map location" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Minimalist grayscale map view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiy7CpkPwxdFhbX0z8ImcOrsqkjl8pg70JckfDYhVEIaiYNsM7mLn6XNBKPU28mryKDuLX90-ANMl6w_GcbqpuapSa4GPogdVw6RZujL2n8_1fwXhEwXsavn2xNYG6G6CsIx8V3VauVj7OJFxywlenAD5BUUIU3qjrDNg93AI5ElTQkhopqNomtn-xqbvWsCgzXZv0JaeytUchJcsE-9xYrhqPw-hNjczWydaRdmRD7dpP-bJnLMk0wdqDi1BDrg8Li1-AMetPmNc"/>
-            <div class="absolute inset-0 flex items-center justify-center bg-primary/10 group-hover:bg-transparent transition-colors">
-              <div class="bg-white px-4 py-2 border border-primary/20 text-xs font-label uppercase tracking-widest text-primary flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm" data-icon="explore">explore</span>
-                Ver Ubicación
-              </div>
-            </div>
+          <!-- Google Map -->
+          <div class="w-full aspect-video bg-surface-container-highest relative overflow-hidden min-h-[300px]">
+            <iframe
+              src="https://maps.google.com/maps?q=Donato%20Guerra%202110%2C%20Col%20Juarez%2C%2088209%20Nuevo%20Laredo%2C%20TAMPS%2C%20Mexico+(Grupo%20L%C3%B3pez%20Soluciones%20Inox)&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+              class="absolute inset-0 w-full h-full"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
           </div>
         </div>
 
