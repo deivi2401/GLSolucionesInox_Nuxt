@@ -117,24 +117,46 @@ const removeFile = (index) => {
   form.files.splice(index, 1)
 }
 
-const submitForm = () => {
-  const subject = encodeURIComponent(`Nueva cotización de proyecto de: ${form.name}`)
-  let bodyText = `Nombre: ${form.name}\nCorreo: ${form.email}\n\nDetalles del proyecto:\n${form.details}\n`
+const submitForm = async () => {
+  if (isSubmitting.value) return
+  isSubmitting.value = true
+  submitMessage.value = ''
 
-  if (form.files.length > 0) {
-    bodyText += `\n[Nota: Por favor, adjunte los siguientes archivos manualmente antes de enviar este correo: ${form.files.map(f => f.name).join(', ')}]`
-  }
+  try {
+    const formData = new FormData()
+    formData.append('name', form.name)
+    formData.append('email', form.email)
+    formData.append('details', form.details)
+    
+    // Add files to FormData
+    form.files.forEach((file) => {
+      formData.append('files', file)
+    })
 
-  const body = encodeURIComponent(bodyText)
-  const mailtoLink = `mailto:glsolucionesinox@gmail.com?subject=${subject}&body=${body}`
+    const { error } = await useFetch('/api/contact', {
+      method: 'POST',
+      body: formData
+    })
 
-  window.location.href = mailtoLink
+    if (error.value) {
+      throw new Error(error.value.message || 'Error occurred during submission')
+    }
 
-  isSuccess.value = true
-  if (form.files.length > 0) {
-    submitMessage.value = 'Se ha abierto tu cliente de correo. IMPORTANTE: Recuerda adjuntar manualmente tus archivos antes de enviar el correo, ya que por seguridad los navegadores no permiten adjuntarlos automáticamente.'
-  } else {
-    submitMessage.value = 'Se ha abierto tu cliente de correo para enviar la solicitud.'
+    isSuccess.value = true
+    submitMessage.value = '¡Tu solicitud ha sido enviada con éxito! Nos pondremos en contacto contigo pronto.'
+    
+    // Reset form
+    form.name = ''
+    form.email = ''
+    form.details = ''
+    form.files = []
+    
+  } catch (error) {
+    console.error('Submission error:', error)
+    isSuccess.value = false
+    submitMessage.value = 'Hubo un error al enviar tu solicitud. Intenta de nuevo más tarde o revisa tu configuración de correo.'
+  } finally {
+    isSubmitting.value = false
   }
 }
 

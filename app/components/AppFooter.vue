@@ -29,8 +29,9 @@
         <h5 class="font-label text-[10px] uppercase tracking-widest font-bold text-tertiary-fixed-dim">Contacto Legal
         </h5>
         <ul class="space-y-4 font-body text-sm text-blue-200/70">
-          <li><a class="hover:text-white transition-colors"
-              href="mailto:glsolucionesinox@gmail.com">glsolucionesinox@gmail.com</a></li>
+          <li>
+            <NuxtLink class="hover:text-white transition-colors" to="/contacto">Soporte y Contacto</NuxtLink>
+          </li>
           <li><a class="hover:text-white transition-colors" href="#">Aviso de Privacidad</a></li>
           <li><a class="hover:text-white transition-colors" href="#">Términos de Servicio</a></li>
         </ul>

@@ -8,8 +8,13 @@ export default defineNuxtConfig({
     '@nuxtjs/sanity',
     '@nuxt/icon'
   ],
+  runtimeConfig: {
+    public: {
+      sanityProjectId: process.env.SANITY_PROJECT_ID || '5f3r5g0t'
+    }
+  },
   sanity: {
-    projectId: '5f3r5g0t',
+    projectId: process.env.SANITY_PROJECT_ID || '5f3r5g0t',
     dataset: 'production',
     apiVersion: '2024-03-22',
     useCdn: false
