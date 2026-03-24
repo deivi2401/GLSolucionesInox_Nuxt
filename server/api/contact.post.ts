@@ -16,12 +16,14 @@ export default defineEventHandler(async (event) => {
     let name = ''
     let email = ''
     let details = ''
+    let token = ''
     const attachments = []
 
     for (const field of formData) {
       if (field.name === 'name') name = field.data.toString()
       else if (field.name === 'email') email = field.data.toString()
       else if (field.name === 'details') details = field.data.toString()
+      else if (field.name === 'cf-turnstile-response') token = field.data.toString()
       else if (field.name === 'files' && field.filename) {
         attachments.push({
           filename: field.filename,
@@ -36,6 +38,25 @@ export default defineEventHandler(async (event) => {
         statusCode: 400,
         statusMessage: 'Bad Request',
         message: 'Missing required fields'
+      })
+    }
+
+    if (!token) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Bad Request',
+        message: 'Missing Turnstile token'
+      })
+    }
+
+    // Validar Cloudflare Turnstile
+    const turnstileValidation = await verifyTurnstileToken(token, event)
+    if (!turnstileValidation.success) {
+      console.warn('Turnstile varification failed', turnstileValidation)
+      throw createError({
+        statusCode: 403,
+        statusMessage: 'Forbidden',
+        message: 'Bot detectado o verificación fallida'
       })
     }
 

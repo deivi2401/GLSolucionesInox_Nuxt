@@ -54,9 +54,12 @@
               </div>
             </div>
           </div>
-          <div class="md:col-span-2">
-            <button :disabled="isSubmitting"
-              class="w-full bg-primary text-on-primary font-label uppercase tracking-widest text-sm py-6 font-bold hover:bg-primary-container transition-all disabled:opacity-70 flex justify-center items-center gap-2"
+          <div class="md:col-span-2 space-y-4">
+            <!-- Cloudflare Turnstile Widget -->
+            <NuxtTurnstile v-model="turnstileToken" />
+            
+            <button :disabled="isSubmitting || !turnstileToken"
+              class="w-full bg-primary text-on-primary font-label uppercase tracking-widest text-sm py-6 font-bold hover:bg-primary-container transition-all disabled:opacity-70 flex justify-center items-center gap-2 mt-4"
               type="submit">
               <Icon v-if="isSubmitting" name="svg-spinners:180-ring" class="text-xl" />
               <span>{{ isSubmitting ? 'Enviando...' : 'Enviar Proyecto para Cotización' }}</span>
@@ -83,6 +86,7 @@ const isDragging = ref(false)
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const isSuccess = ref(false)
+const turnstileToken = ref('')
 
 const form = reactive({
   name: '',
@@ -127,6 +131,7 @@ const submitForm = async () => {
     formData.append('name', form.name)
     formData.append('email', form.email)
     formData.append('details', form.details)
+    formData.append('cf-turnstile-response', turnstileToken.value)
     
     // Add files to FormData
     form.files.forEach((file) => {
