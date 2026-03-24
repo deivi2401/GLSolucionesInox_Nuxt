@@ -29,26 +29,27 @@
         <form class="space-y-10" @submit.prevent="submitForm">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div class="relative group">
-              <input class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="name" name="name" placeholder=" " type="text" required />
+              <input v-model="form.name" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="name" name="name" placeholder=" " type="text" required />
               <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="name">Nombre Completo</label>
             </div>
             <div class="relative group">
-              <input class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="email" name="email" placeholder=" " type="email" required />
+              <input v-model="form.email" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="email" name="email" placeholder=" " type="email" required />
               <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="email">Correo Electrónico</label>
             </div>
           </div>
           <div class="relative group">
-            <select class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface appearance-none" id="service" name="service" required>
-              <option disabled selected value=""></option>
-              <option value="fabrication">Fabricación en Acero Inoxidable</option>
-              <option value="laser">Corte Láser y Guillotina</option>
-              <option value="assembly">Ensamblaje y Soldadura TIG</option>
-              <option value="custom">Prototipo Personalizado</option>
+            <select v-model="form.service" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface appearance-none" id="service" name="service" required>
+              <option disabled value="">Selecciona una opción</option>
+              <option value="Fabricación en Acero Inoxidable">Fabricación en Acero Inoxidable</option>
+              <option value="Corte Láser y Guillotina">Corte Láser y Guillotina</option>
+              <option value="Ensamblaje y Soldadura TIG">Ensamblaje y Soldadura TIG</option>
+              <option value="Prototipo Personalizado">Prototipo Personalizado</option>
+              <option value="Otro">Otro</option>
             </select>
             <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="service">Tipo de Servicio</label>
           </div>
           <div class="relative group">
-            <textarea class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="message" name="message" placeholder=" " rows="4" required></textarea>
+            <textarea v-model="form.message" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="message" name="message" placeholder=" " rows="4" required></textarea>
             <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="message">Detalles y Especificaciones del Proyecto</label>
           </div>
           <button class="w-full bg-primary text-on-primary py-6 font-headline font-bold tracking-[0.2em] text-lg hover:bg-primary-container transition-all flex justify-center items-center gap-4" type="submit">
@@ -56,6 +57,9 @@
             <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
           </button>
         </form>
+        <div v-if="submitMessage" class="mt-6 p-4 border rounded font-body text-sm text-center bg-green-50 border-green-200 text-green-800">
+          {{ submitMessage }}
+        </div>
       </div>
 
       <!-- Contact Sidebar -->
@@ -91,14 +95,14 @@
             <p class="font-label uppercase tracking-[0.2em] text-[10px] text-on-primary/60 mb-4">Correo Directo</p>
             <div class="flex items-center gap-4">
               <span class="material-symbols-outlined" data-icon="mail">mail</span>
-              <a class="text-xl font-bold tracking-tight font-headline hover:text-on-primary-container transition-colors" href="mailto:ventas@grupolopezinox.com">ventas@grupolopezinox.com</a>
+              <a class="text-xl font-bold tracking-tight font-headline hover:text-on-primary-container transition-colors" href="mailto:glsolucionesinox@gmail.com">glsolucionesinox@gmail.com</a>
             </div>
           </div>
           <div class="bg-surface-container-highest p-8 border border-outline-variant/30">
             <p class="font-label uppercase tracking-[0.2em] text-[10px] text-outline mb-4">Línea Directa</p>
             <div class="flex items-center gap-4">
               <span class="material-symbols-outlined text-primary" data-icon="call">call</span>
-              <a class="text-xl font-bold tracking-tight font-headline text-primary hover:text-primary-container transition-colors" href="tel:+521234567890">+52 (123) 456-7890</a>
+              <a class="text-xl font-bold tracking-tight font-headline text-primary hover:text-primary-container transition-colors" href="tel:+528672517096">+52 (867) 251-7096</a>
             </div>
           </div>
         </div>
@@ -142,6 +146,7 @@
 </template>
 
 <script setup>
+import { reactive, ref } from 'vue'
 import { useHead } from '#imports'
 
 useHead({
@@ -154,8 +159,23 @@ useHead({
   ]
 })
 
+const form = reactive({
+  name: '',
+  email: '',
+  service: '',
+  message: ''
+})
+
+const submitMessage = ref('')
+
 const submitForm = () => {
-  // Manejo envíos del formulario simuladamente
-  alert('Formulario de cotización simulado. ¡Gracias por contactarnos!')
+  const subject = encodeURIComponent(`Consulta Técnica de: ${form.name}`)
+  const bodyText = `Nombre: ${form.name}\nCorreo: ${form.email}\nServicio Solicitado: ${form.service}\n\nDetalles del proyecto:\n${form.message}\n`
+  const body = encodeURIComponent(bodyText)
+  const mailtoLink = `mailto:glsolucionesinox@gmail.com?subject=${subject}&body=${body}`
+  
+  window.location.href = mailtoLink
+  
+  submitMessage.value = 'Se ha abierto tu cliente de correo para enviar la solicitud. No olvides darle a "Enviar" en tu aplicación de correo.'
 }
 </script>
