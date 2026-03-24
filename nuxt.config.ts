@@ -10,16 +10,25 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@nuxtjs/turnstile'
   ],
+  routeRules: {
+    '/api/contact': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 3,
+          interval: 15 * 60 * 1000, // 15 minutos en ms
+          headers: false
+        }
+      }
+    }
+  },
   security: {
-    rateLimiter: {
-      tokensPerInterval: 3,
-      interval: 15 * 60 * 1000, // 15 minutos en ms
-      headers: false
-    },
+    rateLimiter: false,
     headers: {
-      crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'credentialless',
+      crossOriginEmbedderPolicy: false,
+      crossOriginResourcePolicy: false,
+      crossOriginOpenerPolicy: false,
       contentSecurityPolicy: {
-        'frame-src': ["'self'", "https://challenges.cloudflare.com"],
+        'frame-src': ["'self'", "https://challenges.cloudflare.com", "https://maps.google.com", "https://www.google.com", "about:blank"],
         'script-src': [
           "'self'",
           "https://challenges.cloudflare.com",
@@ -27,7 +36,7 @@ export default defineNuxtConfig({
           "'strict-dynamic'",
           "'nonce-{{nonce}}'"
         ],
-        'img-src': ["'self'", "data:", "https://cdn.sanity.io", "https://lh3.googleusercontent.com", "https://challenges.cloudflare.com"]
+        'img-src': ["'self'", "data:", "https://cdn.sanity.io", "https://lh3.googleusercontent.com", "https://challenges.cloudflare.com", "https://maps.google.com", "https://www.google.com"]
       }
     }
   },

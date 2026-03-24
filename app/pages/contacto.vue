@@ -29,16 +29,16 @@
         <form class="space-y-10" @submit.prevent="submitForm">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div class="relative group">
-              <input v-model="form.name" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="name" name="name" placeholder=" " type="text" required />
+              <input v-model="form.name" :disabled="isSubmitting" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface disabled:opacity-50" id="name" name="name" placeholder=" " type="text" required />
               <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="name">Nombre Completo</label>
             </div>
             <div class="relative group">
-              <input v-model="form.email" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="email" name="email" placeholder=" " type="email" required />
+              <input v-model="form.email" :disabled="isSubmitting" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface disabled:opacity-50" id="email" name="email" placeholder=" " type="email" required />
               <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="email">Correo Electrónico</label>
             </div>
           </div>
           <div class="relative group">
-            <select v-model="form.service" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface appearance-none" id="service" name="service" required>
+            <select v-model="form.service" :disabled="isSubmitting" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface appearance-none disabled:opacity-50" id="service" name="service" required>
               <option disabled value="">Selecciona una opción</option>
               <option value="Fabricación en Acero Inoxidable">Fabricación en Acero Inoxidable</option>
               <option value="Corte Láser y Guillotina">Corte Láser y Guillotina</option>
@@ -49,15 +49,22 @@
             <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="service">Tipo de Servicio</label>
           </div>
           <div class="relative group">
-            <textarea v-model="form.message" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface" id="message" name="message" placeholder=" " rows="4" required></textarea>
+            <textarea v-model="form.message" :disabled="isSubmitting" class="peer w-full bg-surface-container-high border-0 border-b-2 border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body text-on-surface disabled:opacity-50" id="message" name="message" placeholder=" " rows="4" required></textarea>
             <label class="absolute left-0 top-4 text-outline duration-300 transform -translate-y-8 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8 peer-focus:text-primary font-label uppercase tracking-widest text-xs" for="message">Detalles y Especificaciones del Proyecto</label>
           </div>
-          <button class="w-full bg-primary text-on-primary py-6 font-headline font-bold tracking-[0.2em] text-lg hover:bg-primary-container transition-all flex justify-center items-center gap-4" type="submit">
-            SOLICITAR COTIZACIÓN
-            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-          </button>
+          
+          <div class="space-y-4">
+            <!-- Cloudflare Turnstile Widget -->
+            <NuxtTurnstile v-model="turnstileToken" />
+            
+            <button :disabled="isSubmitting || !turnstileToken" class="w-full bg-primary text-on-primary py-6 font-headline font-bold tracking-[0.2em] text-lg hover:bg-primary-container transition-all flex justify-center items-center gap-4 disabled:opacity-70 mt-4" type="submit">
+              <Icon v-if="isSubmitting" name="svg-spinners:180-ring" class="text-xl" />
+              <span>{{ isSubmitting ? 'ENVIANDO...' : 'SOLICITAR COTIZACIÓN' }}</span>
+              <span v-if="!isSubmitting" class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+          </div>
         </form>
-        <div v-if="submitMessage" class="mt-6 p-4 border rounded font-body text-sm text-center bg-green-50 border-green-200 text-green-800">
+        <div v-if="submitMessage" :class="['mt-6 p-4 border rounded font-body text-sm text-center', isSuccess ? 'bg-green-50 border-green-200 text-green-800' : 'bg-error-container border-error text-on-error-container']">
           {{ submitMessage }}
         </div>
       </div>
@@ -171,15 +178,49 @@ const form = reactive({
 })
 
 const submitMessage = ref('')
+const isSubmitting = ref(false)
+const isSuccess = ref(false)
+const turnstileToken = ref('')
 
-const submitForm = () => {
-  const subject = encodeURIComponent(`Consulta Técnica de: ${form.name}`)
-  const bodyText = `Nombre: ${form.name}\nCorreo: ${form.email}\nServicio Solicitado: ${form.service}\n\nDetalles del proyecto:\n${form.message}\n`
-  const body = encodeURIComponent(bodyText)
-  const mailtoLink = `mailto:glsolucionesinox@gmail.com?subject=${subject}&body=${body}`
-  
-  window.location.href = mailtoLink
-  
-  submitMessage.value = 'Se ha abierto tu cliente de correo para enviar la solicitud. No olvides darle a "Enviar" en tu aplicación de correo.'
+const submitForm = async () => {
+  if (isSubmitting.value) return
+  isSubmitting.value = true
+  submitMessage.value = ''
+
+  try {
+    const formData = new FormData()
+    formData.append('name', form.name)
+    formData.append('email', form.email)
+    
+    // API uses 'details' field for message so concatenate service and message
+    const detailsText = `Servicio Solicitado: ${form.service}\n\nDetalles y Especificaciones del Proyecto:\n${form.message}`
+    formData.append('details', detailsText)
+    formData.append('cf-turnstile-response', turnstileToken.value)
+
+    const { error } = await useFetch('/api/contact', {
+      method: 'POST',
+      body: formData
+    })
+
+    if (error.value) {
+      throw new Error(error.value.message || 'Error occurred during submission')
+    }
+
+    isSuccess.value = true
+    submitMessage.value = '¡Tu solicitud ha sido enviada con éxito! Nos pondremos en contacto contigo pronto.'
+    
+    // Reset form
+    form.name = ''
+    form.email = ''
+    form.service = ''
+    form.message = ''
+    
+  } catch (error) {
+    console.error('Submission error:', error)
+    isSuccess.value = false
+    submitMessage.value = 'Hubo un error al enviar tu solicitud. Intenta de nuevo más tarde o revisa tu configuración de correo.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
