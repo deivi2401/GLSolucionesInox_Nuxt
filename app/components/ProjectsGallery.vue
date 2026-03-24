@@ -191,9 +191,6 @@ const query = `{
     "description": overview, 
     tags, featured,
     "image": heroImage.asset->url + "?auto=format"
-  },
-  "certifications": *[_type == "certification"] {
-    _id, label, description, emoji
   }
 }`
 const { data: queryResult, error } = await useSanityQuery(query)
@@ -206,7 +203,6 @@ if (error.value) {
 }
 
 const projects = computed(() => actualData.value.projects || [])
-const certifications = computed(() => actualData.value.certifications || [])
 // ----------------------------
 
 // ─── Computed ─────────────────────────────────────────────────────────────────

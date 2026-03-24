@@ -75,27 +75,6 @@
             </div>
           </div>
 
-          <!-- Certifications Sidebar (Stitch Design) -->
-          <div ref="certCol" class="bg-primary text-white p-8 shadow-xl opacity-0 transform translate-y-8">
-            <h3 class="font-headline text-lg font-bold mb-8 flex items-center gap-3 border-b border-white/10 pb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Garantía de Calidad
-            </h3>
-            <div class="space-y-10">
-              <div v-for="cert in certs" :key="cert.title" class="group">
-                <div class="flex items-center gap-4 mb-3">
-                  <div class="p-2 bg-white/5 group-hover:bg-secondary transition-colors">
-                    <component :is="cert.icon" class="w-4 h-4 text-blue-300 group-hover:text-white" />
-                  </div>
-                  <h4 class="font-headline text-sm font-bold tracking-tight">{{ cert.title }}</h4>
-                </div>
-                <p class="font-body text-xs text-blue-100/60 leading-relaxed pl-12">
-                  {{ cert.desc }}
-                </p>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -169,26 +148,6 @@ const tubingData = [
   { size: 'Tubo Redondo 1 1/2', gauge: '16', type: '201' }
 ]
 
-const SettingsIcon = markRaw({
-  template: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`
-})
-
-const BarChartIcon = markRaw({
-  template: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>`
-})
-
-const certs = [
-  { 
-    title: 'Estándares Internos', 
-    icon: SettingsIcon, 
-    desc: 'Controles de calidad en cada etapa de la fabricación.' 
-  },
-  { 
-    title: 'Servicio Personalizado', 
-    icon: BarChartIcon, 
-    desc: 'Acompañamiento técnico desde la asesoría hasta la entrega de tu proyecto.' 
-  }
-]
 
 // --- Animation Refs ---
 const heroLabel = ref(null)
@@ -197,7 +156,6 @@ const heroDesc = ref(null)
 const heroBg = ref(null)
 const sheetsCol = ref(null)
 const tubingCol = ref(null)
-const certCol = ref(null)
 const ctaSection = ref(null)
 
 // --- Lifecycle ---
@@ -228,14 +186,6 @@ onMounted(async () => {
       y: 0, opacity: 1, duration: 1, 
       scrollTrigger: { trigger: tubingCol.value, start: 'top 85%' },
       delay: 0.2
-    }
-  )
-
-  gsap.fromTo(certCol.value,
-    { y: 60, opacity: 0 },
-    { 
-      y: 0, opacity: 1, duration: 1.2, 
-      scrollTrigger: { trigger: certCol.value, start: 'top 90%' } 
     }
   )
 
